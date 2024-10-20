@@ -11,10 +11,18 @@ namespace RPBDISLAB3
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Основная строка подключения из secrets.json
+            // Настройка конфигурации для работы с несколькими файлами JSON
+            builder.Configuration
+                .SetBasePath(Directory.GetCurrentDirectory())  // Устанавливаем базовый путь для конфигурации
+                .AddJsonFile("secrets.json", optional: false, reloadOnChange: true)  // Основной конфигурационный файл
+                .AddJsonFile("secrets.Development.json", optional: false, reloadOnChange: true) 
+                .AddUserSecrets<Program>()  // Загрузка секретов из User Secrets 
+                .AddEnvironmentVariables();  // Дополнительная настройка для загрузки переменных окружения
+
+            // Получаем строку подключения из конфигурации
             var connectionString = builder.Configuration.GetConnectionString("MsSqlConnection");
 
-            // Резервная строка подключения из secrets.development.json
+            // Резервная строка подключения из конфигурации (например, для резервного подключения)
             var fallbackConnectionString = builder.Configuration.GetConnectionString("RemoteConnection");
 
             // Регистрация сервисов
