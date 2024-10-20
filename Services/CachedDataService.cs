@@ -69,7 +69,7 @@ namespace RPBDISLAB3.Services
             return violationTypes;
         }
 
-        public IEnumerable<VInspectorWork> GetInspectorWorks()
+        public IEnumerable<VInspectorWork> GetVInspectorWorks()
         {
             if (!_cache.TryGetValue("InspectorWorks", out IEnumerable<VInspectorWork> inspectorWorks))
             {
@@ -82,7 +82,7 @@ namespace RPBDISLAB3.Services
             return inspectorWorks;
         }
 
-        public IEnumerable<VOffendingEnterprise> GetOffendingEnterprises()
+        public IEnumerable<VOffendingEnterprise> GetVOffendingEnterprises()
         {
             if (!_cache.TryGetValue("OffendingEnterprises", out IEnumerable<VOffendingEnterprise> offendingEnterprises))
             {
@@ -95,7 +95,7 @@ namespace RPBDISLAB3.Services
             return offendingEnterprises;
         }
 
-        public IEnumerable<VPenaltyDetail> GetPenaltyDetails()
+        public IEnumerable<VPenaltyDetail> GetVPenaltyDetails()
         {
             if (!_cache.TryGetValue("PenaltyDetails", out IEnumerable<VPenaltyDetail> penaltyDetails))
             {
